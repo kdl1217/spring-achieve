@@ -1,0 +1,32 @@
+server:
+  port: 1234
+
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+        data:
+          mongodb:
+            core: DEBUG
+      hibernate: INFO
+    com:
+      kon: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: ./log/output.log
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOGGING_FILE_MAX_SIZE:100MB}
+      max-history: ${LOGGING_FILE_MAX_HISTORY:50}
+
+# Spring settings
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-integration
+

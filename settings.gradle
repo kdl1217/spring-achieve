@@ -1,0 +1,11 @@
+rootProject.name = 'spring-achieve'
+include 'spring-integration-achieve'
+include 'spring-integration-achieve:mqtt'
+findProject(':spring-integration-achieve:mqtt')?.name = 'mqtt'
+include 'spring-integration-achieve:helloworld'
+findProject(':spring-integration-achieve:helloworld')?.name = 'helloworld'
+include 'spring-integration-achieve:file'
+findProject(':spring-integration-achieve:file')?.name = 'file'
+include 'spring-integration-achieve:ftp'
+findProject(':spring-integration-achieve:ftp')?.name = 'ftp'
+

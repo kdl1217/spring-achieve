@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+kon:
+  mybatis:
+    dialect: mysql
+    tablePrefix: t_
+  swagger:
+    title: FTP
+    description: FTP接口定义描述
+    basePackage: com.kon
+    contactName: Kon
+    contactUrl: localhost:${server.port}
+    contactEmail: dlkong@incarcloud.com
+    version: 1.0
