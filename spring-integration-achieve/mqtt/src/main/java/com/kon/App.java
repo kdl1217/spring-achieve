@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * SpringBoot Launcher
  *
- * @author com.kon, created on 2021/11/19T11:39.
+ * @author com.com.kon, created on 2021/11/19T11:39.
  * @version 1.0.0-SNAPSHOT
  */
 @Slf4j

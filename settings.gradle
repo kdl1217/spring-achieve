@@ -8,4 +8,7 @@ include 'spring-integration-achieve:file'
 findProject(':spring-integration-achieve:file')?.name = 'file'
 include 'spring-integration-achieve:ftp'
 findProject(':spring-integration-achieve:ftp')?.name = 'ftp'
+include 'elasticsearch-achieve'
+include 'solr-achieve'
+include 'jdbc-achieve'
 

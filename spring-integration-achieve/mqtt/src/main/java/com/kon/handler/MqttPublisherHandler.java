@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * MqttPublisherHandler
  *
- * @author kon, created on 2021/11/19T14:19.
+ * @author com.kon, created on 2021/11/19T14:19.
  * @version 1.0.0-SNAPSHOT
  */
 public class MqttPublisherHandler extends MqttPahoMessageHandler {

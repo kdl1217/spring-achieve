@@ -19,7 +19,7 @@ import org.springframework.integration.stream.CharacterStreamReadingMessageSourc
 /**
  * Mqtt Configuration
  *
- * @author kon, created on 2021/11/19T11:43.
+ * @author com.kon, created on 2021/11/19T11:43.
  * @version 1.0.0-SNAPSHOT
  */
 @Slf4j
@@ -36,7 +36,7 @@ public class MqttConfig {
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
         MqttConnectOptions options = new MqttConnectOptions();
-        options.setServerURIs(new String[] { "tcp://kon:1883" });
+        options.setServerURIs(new String[] { "tcp://com.kon:1883" });
         options.setUserName("guest");
         options.setPassword("guest".toCharArray());
         factory.setConnectionOptions(options);

@@ -12,7 +12,7 @@ import org.springframework.integration.dsl.IntegrationFlows;
 /**
  * note
  *
- * @author kon, created on 2021/11/30T14:25.
+ * @author com.kon, created on 2021/11/30T14:25.
  * @version 1.0.0-SNAPSHOT
  */
 @Configuration

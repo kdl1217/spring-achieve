@@ -1,0 +1,20 @@
+server:
+  port: 9999
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-es-achieve
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+  # ElasticSearch Setting
+  elasticsearch:
+    rest:
+      uris: ${ELASTICSEARCH_URI:'http://127.0.0.1:9200'}
+      username: elasticsearch
+      password: elasticsearch
+      connection-timeout: 1s
+      read-timeout: 30s

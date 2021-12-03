@@ -25,7 +25,7 @@ import java.io.File;
 /**
  * note
  *
- * @author kon, created on 2021/12/1T14:01.
+ * @author com.kon, created on 2021/12/1T14:01.
  * @version 1.0.0-SNAPSHOT
  */
 @Configuration

@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * note
  *
- * @author kon, created on 2021/11/30T16:20.
+ * @author com.kon, created on 2021/11/30T16:20.
  * @version 1.0.0-SNAPSHOT
  */
 public class OutputHandler implements MessageHandler {

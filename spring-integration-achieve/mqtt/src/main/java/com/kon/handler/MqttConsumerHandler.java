@@ -8,7 +8,7 @@ import org.springframework.messaging.MessagingException;
 /**
  * note
  *
- * @author kon, created on 2021/11/19T14:41.
+ * @author com.kon, created on 2021/11/19T14:41.
  * @version 1.0.0-SNAPSHOT
  */
 @Slf4j

@@ -8,7 +8,7 @@ import org.springframework.integration.config.EnableIntegration;
 /**
  * SpringBoot Launcher
  *
- * @author kon, created on 2021/12/1T14:00.
+ * @author com.kon, created on 2021/12/1T14:00.
  * @version 1.0.0-SNAPSHOT
  */
 @EnableKonSwagger

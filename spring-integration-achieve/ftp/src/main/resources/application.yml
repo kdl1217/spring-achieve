@@ -8,7 +8,7 @@ kon:
   swagger:
     title: FTP
     description: FTP接口定义描述
-    basePackage: com.kon
+    basePackage: com.com.kon
     contactName: Kon
     contactUrl: localhost:${server.port}
     contactEmail: dlkong@incarcloud.com

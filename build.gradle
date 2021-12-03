@@ -7,7 +7,7 @@ plugins {
 }
 
 allprojects {
-    group = 'com.kon'
+    group = 'com.com.kon'
     version = '1.0.0-SNAPSHOT'
 
     ext {
@@ -69,7 +69,7 @@ subprojects {
                 entry "slf4j-log4j12"
             }
 
-            dependency "com.kon.framework:kon-swagger:1.0.0-SNAPSHOT"
+            dependency "com.com.kon.framework:com.kon-swagger:1.0.0-SNAPSHOT"
 
             dependency "com.alibaba:fastjson:1.2.75"
 

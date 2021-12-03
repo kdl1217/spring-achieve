@@ -8,7 +8,7 @@ import org.springframework.integration.annotation.Transformer;
 /**
  * note
  *
- * @author kon, created on 2021/11/30T16:55.
+ * @author com.kon, created on 2021/11/30T16:55.
  * @version 1.0.0-SNAPSHOT
  */
 @MessageEndpoint

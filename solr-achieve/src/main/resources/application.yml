@@ -1,0 +1,13 @@
+server:
+  port: 9990
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: solr-achieve
+  data:
+    solr:
+      host: ${SOLR_HOST:'http://127.0.0.1:8983/solr'}
+      repositories:
+        enabled: true
