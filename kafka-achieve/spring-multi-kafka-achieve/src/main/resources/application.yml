@@ -27,10 +27,10 @@ spring:
   profiles:
     active: dev
   application:
-    name: spring-kafka-achieve
+    name: spring-multi-kafka-achieve
     # Kafka服务配置
   kafka:
-    bootstrap-servers: 10.0.11.35:9092,10.0.11.37:9092,10.0.11.38:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP-SERVERS:127.0.0.1:9092}
     consumer:
       group-id: kon
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -45,6 +45,14 @@ spring:
     topic:
       self: self-kon
 
-
+third-party:
+  kafka:
+    second:
+      bootstrap-servers: ${KAFKA_SECOND_BOOTSTRAP-SERVERS:127.0.0.1:9092}
+      consumer:
+        group-id: kon-second
+        enable-auto-commit: true
+      topic:
+        second-kon: test
 
 

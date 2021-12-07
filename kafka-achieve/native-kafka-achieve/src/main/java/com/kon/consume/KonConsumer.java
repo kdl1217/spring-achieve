@@ -17,44 +17,42 @@ import java.util.*;
  * @author kon, created on 2021/12/7T14:35.
  * @version 1.0.0-SNAPSHOT
  */
-public class KConsumer {
+public class KonConsumer {
 
     /**
      * 消费者
      */
-    private KafkaConsumer<String, byte[]> consumer;
+    private final KafkaConsumer<String, byte[]> consumer;
 
     /**
      * 订阅消息Handler
      */
-    private IMessageHandler messageHandler;
+    private final IMessageHandler messageHandler;
 
     /**
      * 消息读取
      */
-    private KConsumer.MsgReader msgReader;
-
-    /**
-     * 订阅主题
-     */
-    private List<String> topicList;
+    private final KonConsumer.MsgReader msgReader;
 
     /**
      * 构造函数
      *
      * @param topic 订阅主题
      */
-    public KConsumer(String topic, IMessageHandler messageHandler) {
+    public KonConsumer(String topic, IMessageHandler messageHandler) {
         if (!StringUtils.hasLength(topic)) {
             throw new IllegalArgumentException();
         }
 
         this.messageHandler = messageHandler;
-        this.msgReader = new KConsumer.MsgReader();
+        this.msgReader = new KonConsumer.MsgReader();
 
         Properties props = new Properties();
         //设置消费的Topic组
-        this.topicList = Collections.singletonList(topic);
+        /**
+         * 订阅主题
+         */
+        List<String> topicList = Collections.singletonList(topic);
         // 该地址是集群的子集，用来探测集群。 bootstrap.servers
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.31.138:9092,192.168.31.139:9092,192.168.31.140:9092");
         // consumer的分组id group.id
@@ -93,12 +91,12 @@ public class KConsumer {
         public void run() {
             while(true) {
                 try {
-                    ConsumerRecords<String, byte[]> records = KConsumer.this.consumer.poll(Duration.ofMillis(100L));
-
+                    ConsumerRecords<String, byte[]> records = KonConsumer.this.consumer.poll(Duration.ofMillis(100L));
                     for (ConsumerRecord<String, byte[]> record : records) {
                         try {
-                            if (KConsumer.this.messageHandler != null) {
-                                KConsumer.this.messageHandler.messageReceive(record.topic(), record.partition(), record.offset(), record.key(), record.value());
+                            if (KonConsumer.this.messageHandler != null) {
+                                KonConsumer.this.messageHandler.messageReceive(record.topic(), record.partition(),
+                                        record.offset(), record.key(), record.value());
                             }
                         } catch (Exception var5) {
                             var5.printStackTrace();
@@ -119,7 +117,7 @@ public class KConsumer {
         // Topic
         String topic = "topic" ;
         // 获取消费者
-        KConsumer consumer = new KConsumer(topic, msgHandler) ;
+        KonConsumer consumer = new KonConsumer(topic, msgHandler) ;
         //启动订阅器
         consumer.start();
     }

@@ -1,9 +1,13 @@
 package com.kon.config;
 
+import com.kon.handler.KafkaSendResultHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 
 /**
  * Kafka Configuration
@@ -14,6 +18,17 @@ import org.springframework.kafka.annotation.KafkaListener;
 @Slf4j
 @Configuration
 public class KafkaConfiguration {
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    /**
+     * 配置生产者监听器，也可以不配置
+     */
+    @Bean
+    public void producerListener() {
+        kafkaTemplate.setProducerListener(new KafkaSendResultHandler<>());
+    }
 
     @KafkaListener(topics = "${spring.kafka.topic.self}", concurrency = "${spring.kafka.listener.concurrency}")
     public void processVehicleMode(ConsumerRecord<String, String> record) {

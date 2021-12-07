@@ -1,4 +1,4 @@
-package com.incarcloud.config;
+package com.kon.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +12,9 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
 /**
- * note
+ * 主要的kafka配置
  *
- * @author kon, created on 2021/9/26T16:49.
+ * @author kon, created on 2021/12/7T15:00.
  * @version 1.0.0-SNAPSHOT
  */
 @Slf4j
@@ -29,7 +29,8 @@ public class KafkaMainConfig {
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>> kafkaListenerContainerFactory(ConsumerFactory<Integer, String> consumerFactory) {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>> kafkaListenerContainerFactory(
+            ConsumerFactory<Integer, String> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         factory.getContainerProperties().setPollTimeout(3000);

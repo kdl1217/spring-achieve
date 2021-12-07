@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * note
+ * 第二个kafka配置
  *
  * @author kon, created on 2021/12/7T15:00.
  * @version 1.0.0-SNAPSHOT
@@ -28,21 +28,21 @@ import java.util.Map;
 @Configuration
 public class KafkaSecondConfig {
 
-    @Value("${third-party.kafka.financial.bootstrap-servers}")
+    @Value("${third-party.kafka.second.bootstrap-servers}")
     private String bootstrapServers;
-    @Value("${third-party.kafka.financial.consumer.group-id}")
+    @Value("${third-party.kafka.second.consumer.group-id}")
     private String groupId;
-    @Value("${third-party.kafka.financial.consumer.enable-auto-commit}")
+    @Value("${third-party.kafka.second.consumer.enable-auto-commit}")
     private boolean enableAutoCommit;
 
     @Bean
-    public KafkaTemplate<String, String> kafkaFinancialTemplate() {
-        log.info("add financial template ...");
+    public KafkaTemplate<String, String> kafkaSecondTemplate() {
+        log.info("add second template ...");
         return new KafkaTemplate<>(producerFactory());
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>> kafkaFinancialContainerFactory() {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<Integer, String>> kafkaSecondContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(3);
