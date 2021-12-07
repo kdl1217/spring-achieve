@@ -1,0 +1,50 @@
+server:
+  port: ${SERVER_PORT:8000}
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: ./
+
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    com:
+      kon: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: ./log/output.log
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOGGING_FILE_MAX_SIZE:100MB}
+      max-history: ${LOGGING_FILE_MAX_HISTORY:50}
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-kafka-achieve
+    # Kafka服务配置
+  kafka:
+    bootstrap-servers: 10.0.11.35:9092,10.0.11.37:9092,10.0.11.38:9092
+    consumer:
+      group-id: kon
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 50
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      # kafka调优：指定并行消费线程数量，必须小于或等于分区数量
+      concurrency: 6
+    topic:
+      self: self-kon
+
+
+
+

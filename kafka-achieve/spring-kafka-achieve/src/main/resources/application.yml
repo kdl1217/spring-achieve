@@ -1,0 +1,133 @@
+server:
+  port: ${SERVER_PORT:8000}
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: ./
+  # 下面是配置undertow作为服务器的参数
+  undertow:
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      io: ${UNDERTOW_IO_THREADS:4}
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      worker: ${UNDERTOW_WORKER_THREADS:32}
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 1024
+    # 是否分配的直接内存
+    direct-buffers: true
+    # url 编码
+    url-charset: UTF-8
+
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      incarcloud: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: ./log/output.log
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOGGING_FILE_MAX_SIZE:100MB}
+      max-history: ${LOGGING_FILE_MAX_HISTORY:50}
+
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: sdw
+  datasource:
+    url: jdbc:mysql://kon:3306/springcloud?allowMultiQueries=true&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-open-prepared-statements: 20
+      validation-query: SELECT 1 FROM DUAL
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat,wall
+  data:
+    solr:
+      host: http://10.0.11.34:8983/solr
+    # Kafka服务配置
+  kafka:
+    bootstrap-servers: 10.0.11.36:9092,10.0.11.37:9092,10.0.11.38:9092
+    consumer:
+      group-id: sdw-kon
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 50
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    listener:
+      # kafka调优：指定并行消费线程数量，必须小于或等于分区数量
+      concurrency: 6
+    topic:
+      main-kon: main-kon
+  redis:
+    password: redis2019
+    cluster:
+      max-redirects: 6
+      nodes: 10.0.11.22:7001,10.0.11.23:7001,10.0.11.24:7001,10.0.11.22:7011,10.0.11.23:7011,10.0.11.24:7011
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+
+third-party:
+  kafka:
+    financial:
+      bootstrap-servers: 1.116.26.237:31090,1.116.26.237:31091,1.116.26.237:31092
+      consumer:
+        group-id: baas-financial
+        enable-auto-commit: true
+      topic:
+        main-kon: test
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    lazy-loading-enabled: false
+    multiple-result-sets-enabled: true
+    default-fetch-size: 100
+
+kon:
+  mybatis:
+    dialect: mysql
+    tablePrefix: t_
+  swagger:
+    title: 测试Swagger
+    description: Swagger描述
+    basePackage: com.incarcloud
+    contactName: Kon
+    contactUrl: localhost:${server.port}
+    contactEmail: dlkong@incarcloud.com
+    version: 1.0
