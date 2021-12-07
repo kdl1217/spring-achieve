@@ -69,6 +69,8 @@ subprojects {
                 entry "slf4j-log4j12"
             }
 
+            dependency "org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1"
+
             dependency "com.com.kon.framework:com.kon-swagger:1.0.0-SNAPSHOT"
 
             dependency "com.alibaba:fastjson:1.2.75"

@@ -11,4 +11,5 @@ findProject(':spring-integration-achieve:ftp')?.name = 'ftp'
 include 'elasticsearch-achieve'
 include 'solr-achieve'
 include 'jdbc-achieve'
+include 'jdbc-mybatis-achieve'
 
