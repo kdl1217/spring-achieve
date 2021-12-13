@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 /**
  * JDBC配置
  *      此处为省略部分，可以不配置
- *
+ *      JDBC 类名、字段名符合标准的驼峰命名规范
  * @author kon, created on 2021/12/3T09:22.
  * @version 1.0.0-SNAPSHOT
  */

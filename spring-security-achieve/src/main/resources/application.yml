@@ -1,0 +1,35 @@
+server:
+  port: 9997
+
+# Logging settings
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+    com:
+      kon: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: ./log/output.log
+  logback:
+    rollingpolicy:
+      max-file-size: ${LOGGING_FILE_MAX_SIZE:100MB}
+      max-history: ${LOGGING_FILE_MAX_HISTORY:50}
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-security-achieve
+  datasource:
+    url: jdbc:mysql://kon:3306/security?allowMultiQueries=true&characterEncoding=utf8&useUnicode=true&zeroDateTimeBehavior=convertToNull&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  data:
+    jdbc:
+      repositories:
+        enabled: true
+

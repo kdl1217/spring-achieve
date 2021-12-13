@@ -19,4 +19,5 @@ include 'kafka-achieve:spring-kafka-achieve'
 findProject(':kafka-achieve:spring-kafka-achieve')?.name = 'spring-kafka-achieve'
 include 'kafka-achieve:spring-multi-kafka-achieve'
 findProject(':kafka-achieve:spring-multi-kafka-achieve')?.name = 'spring-multi-kafka-achieve'
+include 'spring-security-achieve'
 

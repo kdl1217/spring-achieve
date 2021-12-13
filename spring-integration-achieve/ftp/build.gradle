@@ -1,5 +1,5 @@
 dependencies {
-    implementation "com.com.kon.framework:com.kon-swagger"
+    implementation "com.kon.framework:kon-swagger"
 
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
